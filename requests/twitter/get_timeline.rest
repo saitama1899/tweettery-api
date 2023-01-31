@@ -1,0 +1,1 @@
+GET localhost:5000/api/twitter/timeline/4882508632 User-Agent: v2UserLookupJS Content-Type: application/json Authorization: Bearer process.env.BEARER_TOKEN

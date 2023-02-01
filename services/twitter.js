@@ -10,7 +10,6 @@ getUserId = async (username) => {
     const endpointURL = `https://api.twitter.com/2/users/by/username/${username}`
     const response = await needle('get', endpointURL, params, {
       headers: {
-        "User-Agent": "v2UserLookupJS",
         "authorization": `Bearer ${BEARER_TOKEN}`
       }
     })
@@ -30,7 +29,6 @@ getTimeline = async (userId) => {
     const endpointURL = `https://api.twitter.com/2/users/${userId}/tweets`
     const response = await needle('get', endpointURL, params, {
       headers: {
-        "User-Agent": "v2UserLookupJS",
         "authorization": `Bearer ${BEARER_TOKEN}`
       }
     })

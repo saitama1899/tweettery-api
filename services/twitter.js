@@ -1,10 +1,9 @@
-const twitterRouter = require('express').Router()
 const needle = require('needle')
+
 const BEARER_TOKEN = process.env.BEARER_TOKEN
 
-twitterRouter.get("/user/:username", async (req, res) => {
+getUserId = async (username) => {
   try {
-    const { username } = req.params
     const params = {
       "user.fields": "profile_image_url"
     }
@@ -16,18 +15,17 @@ twitterRouter.get("/user/:username", async (req, res) => {
       }
     })
     if (response.body) {
-      return res.json(response.body)
+      return response.body
     } else {
       throw new Error('Unsuccessful request')
     }
   } catch (e) { console.error(e) }
-})
+}
 
-twitterRouter.get("/timeline/:userId", async (req, res) => {
+getTimeline = async (userId) => {
   try {
-    const { userId } = req.params
     const params = {
-      "max_results": 100
+      "max_results": 25
     }
     const endpointURL = `https://api.twitter.com/2/users/${userId}/tweets`
     const response = await needle('get', endpointURL, params, {
@@ -37,12 +35,14 @@ twitterRouter.get("/timeline/:userId", async (req, res) => {
       }
     })
     if (response.body) {
-      return res.json(response.body)
+      return response.body
     } else {
       throw new Error('Unsuccessful request')
     }
   } catch (e) { console.error(e) }
-})
+}
 
-module.exports = twitterRouter
-
+module.exports = {
+  getUserId,
+  getTimeline
+}

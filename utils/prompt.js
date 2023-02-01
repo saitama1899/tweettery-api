@@ -18,12 +18,6 @@ const getPrompt = (text) => {
 `
 } 
 
-// const joinText = (textData) => {
-//   const regex = /(@\w+|https?:\/\/[^\s]+)/g;
-//   const joinedText = textData.reduce((acc, curr) => acc + curr.text.replace(/\n/g, ' ').replace(regex, ''), '');
-//   const trimmedText = joinedText.substring(0, 1500);
-//   return trimmedText;
-// }
 const joinText = (textData) => {
   let text = ''
   const MAX_LENGTH = 1000

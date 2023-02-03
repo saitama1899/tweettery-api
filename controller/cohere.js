@@ -19,7 +19,6 @@ cohereRouter.post("/summary", async (req, res) => {
       return res.status(400).send({ error: `timeline for user id ${req.body.username} not found`})
     }
     const text = joinText(timeline.data)
-    console.log(text)
     const prompt = getPrompt(text)
     const options = {
       headers: {
@@ -51,7 +50,10 @@ cohereRouter.post("/summary", async (req, res) => {
       }
     })
     if (response.body) {
-      return res.json(response.body)
+      return res.json({
+        cohere: response.body.generations?.[0]?.text,
+        twitter: user?.data?.profile_image_url
+      })
     } else {
       throw new Error('Unsuccessful request')
     }

@@ -7,15 +7,15 @@ const { getUserId, getTimeline } = require('../services/twitter')
 
 cohereRouter.post("/summary", async (req, res) => {
   try {
-    if (!req.body.username) {
+    if (!req?.body?.username) {
       return res.status(400).send({ error: 'username is required in the request body' })
     }
     const user = await getUserId(req.body.username)
-    if (!user.data.id) {
+    if (!user?.data?.id) {
       return res.status(400).send({ error: 'username id not found' })
     }
     const timeline = await getTimeline(user.data.id)
-    if (!timeline.data) {
+    if (!timeline?.data) {
       return res.status(400).send({ error: `timeline for user id ${req.body.username} not found`})
     }
     const text = joinText(timeline.data)
@@ -49,9 +49,9 @@ cohereRouter.post("/summary", async (req, res) => {
         console.log(res.body);
       }
     })
-    if (response.body) {
+    if (response?.body) {
       return res.json({
-        cohere: response.body.generations?.[0]?.text,
+        cohere: response.body?.generations?.[0]?.text,
         twitter: user?.data?.profile_image_url
       })
     } else {

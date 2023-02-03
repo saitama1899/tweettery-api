@@ -16,7 +16,7 @@ cohereRouter.post("/summary", async (req, res) => {
     }
     const timeline = await getTimeline(user.data.id)
     if (!timeline?.data) {
-      return res.status(400).send({ error: `timeline for user id ${req.body.username} not found`})
+      return res.status(400).send({ error: `timeline not found`})
     }
     const text = joinText(timeline.data)
     const prompt = getPrompt(text)

@@ -14,12 +14,15 @@ cohereRouter.post("/summary", async (req, res) => {
     if (!user?.data?.id) {
       return res.status(400).send({ error: 'username id not found' })
     }
+    // console.log(user.data.id);
     const timeline = await getTimeline(user.data.id)
     if (!timeline?.data) {
       return res.status(400).send({ error: `timeline not found`})
     }
+
     const text = joinText(timeline.data)
     const prompt = getPrompt(text)
+    // console.log(text);
     const options = {
       headers: {
         accept: 'application/json',
@@ -32,7 +35,7 @@ cohereRouter.post("/summary", async (req, res) => {
     const params = {
       model: 'command-xlarge-20221108',
       prompt: prompt,
-      max_tokens: 500,
+      max_tokens: 450,
       temperature: 0.5,
       k: 0,
       p: 0.75,
@@ -50,6 +53,7 @@ cohereRouter.post("/summary", async (req, res) => {
       }
     })
     if (response?.body) {
+      console.log(response.body);
       return res.json({
         cohere: response.body?.generations?.[0]?.text,
         twitter: user?.data?.profile_image_url

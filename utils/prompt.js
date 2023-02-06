@@ -10,7 +10,7 @@ const getPrompt = (text) => {
   Text input 2: \n
   I'm laughing. uwu Hey guys, how are you? Let's go UP, come on. Hi friend, here I have it. Thank you for the gift, it's amazing haha it made me very happy. What was this live stream about? We're going back home. Thanks Mexico for the affection and reception, I won't forget this trip in my life. I felt extremely loved. Thanks. KOI vs SK WEEK 6 WE HAVE A LOT RIDING ON THIS, LET'S TALK ABOUT ESLAND AT 20:00 KOI vs SK. I just saw this loser thing and got like this, I think the doctor slim they threw was for you and not for me papu now I give it to you, thank you for the support kuni I love you. I perfectly understand that some of you would have preferred Auron, Juanito or Mariana. Whichever won, for me it was fine. But don't get angry. If I just do my moves and people vote for me, I can't do anything. Next year I won't run jajaja. Streamer of the year. Best event of the year. Thank you all for the support. Thank you all for following all my adventures for so many years. Thank you Mexico for being an absolutely amazing country. Long live the nights of beautiful Mexico.\n
   Output for text input 2: \n
-  1>> The 10 most popular topics: ['Streamer of the Year', 'ESLand', 'Gracias', 'KOI', 'SK', 'Events', 'México', 'Premios', 'Streamer'] \n
+  1>> The 10 most popular topics: ['Streamer of the Year', 'ESLand', 'Gracias', 'KOI', 'SK', 'Events', 'México', 'Heppy', 'Streamer'] \n
   2>> Brief summary of the content: The author is sharing information about the Streamer of the Year award and their nomination for it. They also talk about their experience at ESLand and the Koi vs SK match. They express their gratitude to Mexico and its people for being a wonderful country. \n
   Text input 3: \n
   ${text} \n

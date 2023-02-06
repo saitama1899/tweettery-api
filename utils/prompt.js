@@ -20,7 +20,7 @@ const getPrompt = (text) => {
 
 const joinText = (textData) => {
   let text = ''
-  const MAX_LENGTH = 900
+  const MAX_LENGTH = 1000
   const mentionsRegex = /@\w+/g
 
   textData.forEach(({text: t}) => {

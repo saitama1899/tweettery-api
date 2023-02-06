@@ -14,7 +14,7 @@ cohereRouter.post("/summary", async (req, res) => {
     if (!user?.data?.id) {
       return res.status(400).send({ error: 'username id not found' })
     }
-    // console.log(user.data.id);
+    console.log(user.data.id);
     const timeline = await getTimeline(user.data.id)
     if (!timeline?.data) {
       return res.status(400).send({ error: `timeline not found`})
@@ -22,7 +22,7 @@ cohereRouter.post("/summary", async (req, res) => {
 
     const text = joinText(timeline.data)
     const prompt = getPrompt(text)
-    // console.log(text);
+    console.log(text);
     const options = {
       headers: {
         accept: 'application/json',
@@ -53,7 +53,13 @@ cohereRouter.post("/summary", async (req, res) => {
       }
     })
     if (response?.body) {
-      console.log(response.body);
+      // console.log(response.body);
+      if ((response.body?.message).includes('blocked output:')) {
+        return res.json({
+          cohere: 'Sorry, this user timeline contains inappropriate content. Try with other user! ',
+          twitter: user?.data?.profile_image_url
+        })
+      }
       return res.json({
         cohere: response.body?.generations?.[0]?.text,
         twitter: user?.data?.profile_image_url

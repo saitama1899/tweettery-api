@@ -54,9 +54,9 @@ cohereRouter.post("/summary", async (req, res) => {
     })
     if (response?.body) {
       // console.log(response.body);
-      if ((response.body?.message).includes('blocked output:')) {
-        return res.status(400).send({ error: "Sorry, this user timeline contains inappropriate content. Try with other user!" })
-      }
+      // if ((response.body?.message).includes('blocked output:')) {
+      //   return res.status(400).send({ error: "Sorry, this user timeline contains inappropriate content. Try with other user!" })
+      // }
       return res.json({
         cohere: response.body?.generations?.[0]?.text,
         twitter: user?.data?.profile_image_url
